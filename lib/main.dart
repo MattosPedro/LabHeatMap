@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class AboutTheAppScream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -272,7 +273,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainScreen(),
                           ),
                         );
                       } else if (_passwordController.text == '' ||
@@ -365,7 +366,7 @@ class LoginScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => AboutTheAppScream(),
                   ),
                 );
               },
@@ -442,6 +443,773 @@ class ViewLogins extends StatelessWidget {
           },
           child: Text('Recuperar Valores Salvos'),
         ),
+      ),
+    );
+  }
+}
+
+class MainScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Mapa De Calor Labs',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 90.0), // Espaçamento superior
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.count(
+              crossAxisCount: 4, // 4 colunas
+              mainAxisSpacing: 15.0, // Espaçamento vertical entre os itens
+              crossAxisSpacing: 10.0, // Espaçamento horizontal entre os itens
+              children: List.generate(12, (index) {
+                // Gerar 12 botões
+                return ElevatedButton(
+                  onPressed: () {
+                    _navigateToPage(context, index + 1);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF166674)),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center, // Alinha o texto ao centro do botão
+                    child: Text(
+                      'Lab ${index + 300}',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+              }),
+            ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+
+  void _navigateToPage(BuildContext context, int pageIndex) {
+    switch (pageIndex) {
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FirstPage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SecondPage()),
+        );
+        break;
+        case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ThirdPage()),
+        );
+        break;
+        case 4:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FourthPage()),
+        );
+        break;
+        case 5:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FifthPage()),
+        );
+        break;
+        case 6:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SixthPage()),
+        );
+        break;
+        case 7:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SeventhPage()),
+        );
+        break;
+        case 8:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EighthPage()),
+        );
+        break;
+        case 9:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NinthPage()),
+        );
+        break;
+        case 10:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TenthPage()),
+        );
+        break;
+        case 11:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EleventhPage()),
+        );
+        break;
+        case 12:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TwelfthPage()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
+  
+}
+
+class FirstPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 300',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 301',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class ThirdPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 302',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class FourthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 303',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class FifthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 304',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class SixthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 305',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class SeventhPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 306',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class EighthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 307',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class NinthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 308',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class TenthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 309',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class EleventhPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 310',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class TwelfthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 311',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pessoas no local: 9', textAlign: TextAlign.center), // Alinhar o texto no centro
+                      Text('Pessoas no mês: 16', textAlign: TextAlign.center),
+                      Text('Pessoas na semana: 11', textAlign: TextAlign.center),
+                      Text('Luz acesa: Não', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
       ),
     );
   }
