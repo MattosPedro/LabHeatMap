@@ -452,17 +452,17 @@ class MainScreen extends StatelessWidget {
   // Lista de cores para os botões
   final List<Color> buttonColors = [
     Colors.red,
-    Colors.orange,
+    Colors.blue,
     Colors.red,
     Colors.yellow,
-    Colors.orange,
-    Colors.yellow,
+    Colors.blue,
     Colors.red,
     Colors.red,
     Colors.yellow,
-    Colors.orange,
-    Colors.red,
+    Colors.blue,
     Colors.yellow,
+    Colors.yellow,
+    Colors.blue,
   ];
 
   @override
@@ -479,31 +479,69 @@ class MainScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 90.0), // Espaçamento superior
         child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.count(
-              crossAxisCount: 4, // 4 colunas
-              mainAxisSpacing: 15.0, // Espaçamento vertical entre os itens
-              crossAxisSpacing: 10.0, // Espaçamento horizontal entre os itens
-              children: List.generate(12, (index) {
-                // Gerar 12 botões
-                return ElevatedButton(
-                  onPressed: () {
-                    _navigateToPage(context, index + 1);
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(buttonColors[index]), // Define a cor do botão
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.count(
+                  crossAxisCount: 4, // 4 colunas
+                  mainAxisSpacing: 15.0, // Espaçamento vertical entre os itens
+                  crossAxisSpacing: 10.0, // Espaçamento horizontal entre os itens
+                  shrinkWrap: true,
+                  children: List.generate(12, (index) {
+                    // Gerar 12 botões
+                    return ElevatedButton(
+                      onPressed: () {
+                        _navigateToPage(context, index + 1);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(buttonColors[index]), // Define a cor do botão
+                      ),
+                      child: Align(
+                        alignment: Alignment.center, // Alinha o texto ao centro do botão
+                        child: Text(
+                          'Lab ${index + 300}',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                color: Colors.grey[350], // Cor de fundo cinza
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 5, left: 100, top: 10, bottom: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          _legendBox(Colors.red), // Caixinha vermelha (lotado)
+                          SizedBox(width: 5), // Espaçamento entre as caixinhas
+                          Text('Esse lab está muito ocupado'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          _legendBox(Colors.yellow), // Caixinha laranja (cheio)
+                          SizedBox(width: 5), // Espaçamento entre as caixinhas
+                          Text('Esse lab está parcialmente ocupado'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          _legendBox(Colors.blue), // Caixinha amarela (vazio)
+                          SizedBox(width: 5), // Espaçamento entre as caixinhas
+                          Text('Esse lab está vazio'),
+                        ],
+                      ),
+                    ],
                   ),
-                  child: Align(
-                    alignment: Alignment.center, // Alinha o texto ao centro do botão
-                    child: Text(
-                      'Lab ${index + 300}',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                );
-              }),
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -513,6 +551,15 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _legendBox(Color color) {
+    return Container(
+      width: 20,
+      height: 20,
+      color: color,
+    );
+  }
+
 
   void _navigateToPage(BuildContext context, int pageIndex) {
     switch (pageIndex) {
