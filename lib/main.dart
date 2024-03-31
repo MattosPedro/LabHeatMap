@@ -449,6 +449,22 @@ class ViewLogins extends StatelessWidget {
 }
 
 class MainScreen extends StatelessWidget {
+  // Lista de cores para os botões
+  final List<Color> buttonColors = [
+    Colors.red,
+    Colors.orange,
+    Colors.red,
+    Colors.yellow,
+    Colors.orange,
+    Colors.yellow,
+    Colors.red,
+    Colors.red,
+    Colors.yellow,
+    Colors.orange,
+    Colors.red,
+    Colors.yellow,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -476,7 +492,7 @@ class MainScreen extends StatelessWidget {
                     _navigateToPage(context, index + 1);
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF166674)),
+                    backgroundColor: MaterialStateProperty.all<Color>(buttonColors[index]), // Define a cor do botão
                   ),
                   child: Align(
                     alignment: Alignment.center, // Alinha o texto ao centro do botão
