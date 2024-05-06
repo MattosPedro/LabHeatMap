@@ -8,7 +8,6 @@ void main() {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AboutTheAppScream extends StatelessWidget {
+class AboutTheAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,21 +35,97 @@ class AboutTheAppScream extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10),
               child: Text(
                 '\n Desenvolvido para atender às necessidades específicas de escolas, faculdades e outras instituições, o Mapa de Calor da Puc oferece um controle abrangente e em tempo real sobre a ocupação e o ambiente de diversos locais.Com o objetivo de fornecer informações precisas e acessíveis, nosso aplicativo permite que gestores visualizem a quantidade de pessoas que frequentaram um determinado ambiente em diferentes períodos de tempo, seja diariamente, semanalmente ou mensalmente. Além disso, oferecemos insights valiosos, como a disponibilidade de computadores, status das luzes e outras informações pertinentes sobre o ambiente, garantindo uma gestão eficiente e otimizada.',
                 style: TextStyle(
-                  fontSize: 13.5,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 200),
             // Remova o Container daqui
           ],
         ),
       ),
+      drawer: Container(
+          child: Container(
+              width: MediaQuery.of(context).size.width *
+                  0.35, // Define a largura como 30% da largura da tela
+              color: Color.fromARGB(255, 37, 163, 185),
+              child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+                PreferredSize(
+                  preferredSize: Size.fromHeight(100),
+                  child: DrawerHeader(
+                    child: Text(
+                      'Menu',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 37, 163, 185),
+                    ),
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    'Cadastro',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUpScreen(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                    title: Text(
+                      'Mapa',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainScreen(),
+                        ),
+                      );
+                    }),
+                ListTile(
+                    title: Text(
+                      'Sobre o App',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AboutTheAppScreen(),
+                        ),
+                      );
+                    }),
+                SizedBox(
+                  height: 370,
+                ),
+                ListTile(
+                    title: Text(
+                      'Sair',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    })
+              ]))),
       bottomNavigationBar: Container(
         height: 70, // Altura da moldura inferior
         color: Color(0xFF166674), // Cor da moldura inferior
@@ -240,7 +315,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Lab Heat Map',
+          'LabHeatMap',
           style: TextStyle(
             color: Colors.white,
           ),
@@ -361,34 +436,6 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 300.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AboutTheAppScream(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                    Color(0xFF166674)), // Cor de fundo do botão
-                minimumSize: MaterialStateProperty.all<Size>(
-                    Size(10, 15)), // Tamanho mínimo do botão (largura x altura)
-                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                    EdgeInsets.all(8)), // Espaçamento interno do botão
-                textStyle: MaterialStateProperty.all<TextStyle>(
-                    TextStyle(fontSize: 15)), // Estilo do texto do botão
-                // Outras propriedades de estilo podem ser adicionadas conforme necessário
-              ),
-              child: Text(
-                'Sobre o App',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
           SizedBox(height: 2.0),
           Container(
             height: 70, // Altura da moldura inferior
@@ -456,102 +503,191 @@ class MainScreen extends StatelessWidget {
     Colors.red,
     Colors.blue,
     Colors.red,
-    Colors.yellow,
+    Colors.orange,
     Colors.blue,
     Colors.red,
     Colors.red,
-    Colors.yellow,
+    Colors.orange,
     Colors.blue,
-    Colors.yellow,
-    Colors.yellow,
+    Colors.orange,
+    Colors.orange,
     Colors.blue,
+    Colors.red,
+    Colors.blue,
+    Colors.orange,
+    Colors.red,
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Mapa De Calor Labs',
-          style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          title: Text(
+            'Mapa De Calor',
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          backgroundColor: Color(0xFF166674),
         ),
-        centerTitle: true,
-        backgroundColor: Color(0xFF166674),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 90.0), // Espaçamento superior
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.count(
-                  crossAxisCount: 4, // 4 colunas
-                  mainAxisSpacing: 15.0, // Espaçamento vertical entre os itens
-                  crossAxisSpacing: 10.0, // Espaçamento horizontal entre os itens
-                  shrinkWrap: true,
-                  children: List.generate(12, (index) {
-                    // Gerar 12 botões
-                    return ElevatedButton(
-                      onPressed: () {
-                        _navigateToPage(context, index + 1);
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(buttonColors[index]), // Define a cor do botão
-                      ),
-                      child: Align(
-                        alignment: Alignment.center, // Alinha o texto ao centro do botão
-                        child: Text(
-                          'Lab ${index + 300}',
-                          style: TextStyle(color: Colors.white),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 70.0), // Espaçamento superior
+          child: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.count(
+                    crossAxisCount: 4, // 4 colunas
+                    mainAxisSpacing:
+                        15.0, // Espaçamento vertical entre os itens
+                    crossAxisSpacing:
+                        10.0, // Espaçamento horizontal entre os itens
+                    shrinkWrap: true,
+                    children: List.generate(16, (index) {
+                      // Gerar 12 botões
+                      return ElevatedButton(
+                        onPressed: () {
+                          _navigateToPage(context, index + 1);
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              buttonColors[index]), // Define a cor do botão
                         ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Container(
-                color: Colors.grey[350], // Cor de fundo cinza
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 5, left: 100, top: 10, bottom: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          _legendBox(Colors.red), // Caixinha vermelha (lotado)
-                          SizedBox(width: 5), // Espaçamento entre as caixinhas
-                          Text('Esse lab está muito ocupado'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          _legendBox(Colors.yellow), // Caixinha laranja (cheio)
-                          SizedBox(width: 5), // Espaçamento entre as caixinhas
-                          Text('Esse lab está parcialmente ocupado'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          _legendBox(Colors.blue), // Caixinha amarela (vazio)
-                          SizedBox(width: 5), // Espaçamento entre as caixinhas
-                          Text('Esse lab está vazio'),
-                        ],
-                      ),
-                    ],
+                        child: Align(
+                          alignment: Alignment
+                              .center, // Alinha o texto ao centro do botão
+                          child: Text(
+                            'Lab ${index + 300}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      );
+                    }),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 50.0),
+                Container(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        right: 5, left: 100, top: 10, bottom: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            _legendBox(
+                                Colors.red), // Caixinha vermelha (lotado)
+                            SizedBox(
+                                width: 5), // Espaçamento entre as caixinhas
+                            Text('Totalmente ocupado'),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            _legendBox(
+                                Colors.orange), // Caixinha laranja (cheio)
+                            SizedBox(
+                                width: 5), // Espaçamento entre as caixinhas
+                            Text('Parcialmente ocupado'),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            _legendBox(Colors.blue), // Caixinha amarela (vazio)
+                            SizedBox(
+                                width: 5), // Espaçamento entre as caixinhas
+                            Text('Vazio'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: Container(
-        height: 70, // Altura da moldura inferior
-        color: Color(0xFF166674), // Cor da moldura inferior
-      ),
-    );
+        bottomNavigationBar: Container(
+          height: 70, // Altura da moldura inferior
+          color: Color(0xFF166674), // Cor da moldura inferior
+        ),
+        drawer: Container(
+            child: Container(
+                width: MediaQuery.of(context).size.width *
+                    0.35, // Define a largura como 30% da largura da tela
+                color: Color.fromARGB(255, 37, 163, 185),
+                child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+                  PreferredSize(
+                    preferredSize: Size.fromHeight(100),
+                    child: DrawerHeader(
+                      child: Text(
+                        'Menu',
+                        style: TextStyle(fontSize: 25, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 37, 163, 185),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Cadastro',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                      title: Text(
+                        'Mapa',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainScreen(),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      title: Text(
+                        'Sobre o App',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AboutTheAppScreen(),
+                          ),
+                        );
+                      }),
+                  SizedBox(
+                    height: 370,
+                  ),
+                  ListTile(
+                      title: Text(
+                        'Sair',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      })
+                ]))));
   }
 
   Widget _legendBox(Color color) {
@@ -561,7 +697,6 @@ class MainScreen extends StatelessWidget {
       color: color,
     );
   }
-
 
   void _navigateToPage(BuildContext context, int pageIndex) {
     switch (pageIndex) {
@@ -577,80 +712,103 @@ class MainScreen extends StatelessWidget {
           MaterialPageRoute(builder: (context) => SecondPage()),
         );
         break;
-        case 3:
+      case 3:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ThirdPage()),
         );
         break;
-        case 4:
+      case 4:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => FourthPage()),
         );
         break;
-        case 5:
+      case 5:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => FifthPage()),
         );
         break;
-        case 6:
+      case 6:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SixthPage()),
         );
         break;
-        case 7:
+      case 7:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SeventhPage()),
         );
         break;
-        case 8:
+      case 8:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => EighthPage()),
         );
         break;
-        case 9:
+      case 9:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => NinthPage()),
         );
         break;
-        case 10:
+      case 10:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => TenthPage()),
         );
         break;
-        case 11:
+      case 11:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => EleventhPage()),
         );
         break;
-        case 12:
+      case 12:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => TwelfthPage()),
+        );
+        break;
+      case 13:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ThirteenthPage()),
+        );
+        break;
+      case 14:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FourtennthPage()),
+        );
+        break;
+      case 15:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FifteenthPage()),
+        );
+        break;
+      case 16:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SixtennthPage()),
         );
         break;
       default:
         break;
     }
   }
-  
 }
 
-class FirstPage extends StatefulWidget  {
+class FirstPage extends StatefulWidget {
   @override
   _FirstPageState createState() => _FirstPageState();
 }
 
 class _FirstPageState extends State<FirstPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -667,7 +825,7 @@ class _FirstPageState extends State<FirstPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -675,6 +833,7 @@ class _FirstPageState extends State<FirstPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -692,24 +851,32 @@ class _FirstPageState extends State<FirstPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
-                      if(numero>0)Text('Luz acesa: Sim', textAlign: TextAlign.center)else Text('Luz acesa: Não', textAlign: TextAlign.center)
+                      if (numero > 0)
+                        Text('Luz acesa: Sim', textAlign: TextAlign.center)
+                      else
+                        Text('Luz acesa: Não', textAlign: TextAlign.center)
                     ],
                   ),
                 ),
@@ -727,12 +894,12 @@ class _FirstPageState extends State<FirstPage> {
 }
 
 class SecondPage extends StatefulWidget {
-   @override
+  @override
   _SecondPageState createState() => _SecondPageState();
 }
 
 class _SecondPageState extends State<SecondPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -749,7 +916,7 @@ class _SecondPageState extends State<SecondPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -757,6 +924,7 @@ class _SecondPageState extends State<SecondPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -774,21 +942,26 @@ class _SecondPageState extends State<SecondPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -809,12 +982,12 @@ class _SecondPageState extends State<SecondPage> {
 }
 
 class ThirdPage extends StatefulWidget {
-   @override
+  @override
   _ThirdPageState createState() => _ThirdPageState();
 }
 
 class _ThirdPageState extends State<ThirdPage> {
- int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -831,7 +1004,7 @@ class _ThirdPageState extends State<ThirdPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -839,6 +1012,7 @@ class _ThirdPageState extends State<ThirdPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -856,21 +1030,26 @@ class _ThirdPageState extends State<ThirdPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -891,12 +1070,12 @@ class _ThirdPageState extends State<ThirdPage> {
 }
 
 class FourthPage extends StatefulWidget {
-   @override
+  @override
   _FourthPageState createState() => _FourthPageState();
 }
 
 class _FourthPageState extends State<FourthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -913,7 +1092,7 @@ class _FourthPageState extends State<FourthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -921,6 +1100,7 @@ class _FourthPageState extends State<FourthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -938,21 +1118,26 @@ class _FourthPageState extends State<FourthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -973,12 +1158,12 @@ class _FourthPageState extends State<FourthPage> {
 }
 
 class FifthPage extends StatefulWidget {
-   @override
+  @override
   _FifthPageState createState() => _FifthPageState();
 }
 
 class _FifthPageState extends State<FifthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -995,7 +1180,7 @@ class _FifthPageState extends State<FifthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1003,6 +1188,7 @@ class _FifthPageState extends State<FifthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1020,21 +1206,26 @@ class _FifthPageState extends State<FifthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1060,7 +1251,7 @@ class SixthPage extends StatefulWidget {
 }
 
 class _SixthPageState extends State<SixthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1077,7 +1268,7 @@ class _SixthPageState extends State<SixthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1085,6 +1276,7 @@ class _SixthPageState extends State<SixthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1102,21 +1294,26 @@ class _SixthPageState extends State<SixthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1142,7 +1339,7 @@ class SeventhPage extends StatefulWidget {
 }
 
 class _SeventhPageState extends State<SeventhPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1159,7 +1356,7 @@ class _SeventhPageState extends State<SeventhPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1167,6 +1364,7 @@ class _SeventhPageState extends State<SeventhPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1184,21 +1382,26 @@ class _SeventhPageState extends State<SeventhPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1224,7 +1427,7 @@ class EighthPage extends StatefulWidget {
 }
 
 class _EighthPageState extends State<EighthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1241,7 +1444,7 @@ class _EighthPageState extends State<EighthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1249,6 +1452,7 @@ class _EighthPageState extends State<EighthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1266,21 +1470,26 @@ class _EighthPageState extends State<EighthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1306,7 +1515,7 @@ class NinthPage extends StatefulWidget {
 }
 
 class _NinthPageState extends State<NinthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1323,7 +1532,7 @@ class _NinthPageState extends State<NinthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1331,6 +1540,7 @@ class _NinthPageState extends State<NinthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1348,21 +1558,26 @@ class _NinthPageState extends State<NinthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1388,7 +1603,7 @@ class TenthPage extends StatefulWidget {
 }
 
 class _TenthPageState extends State<TenthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1405,7 +1620,7 @@ class _TenthPageState extends State<TenthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1413,6 +1628,7 @@ class _TenthPageState extends State<TenthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1430,21 +1646,26 @@ class _TenthPageState extends State<TenthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1470,7 +1691,7 @@ class EleventhPage extends StatefulWidget {
 }
 
 class _EleventhPageState extends State<EleventhPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1487,7 +1708,7 @@ class _EleventhPageState extends State<EleventhPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1495,6 +1716,7 @@ class _EleventhPageState extends State<EleventhPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1512,21 +1734,26 @@ class _EleventhPageState extends State<EleventhPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1552,7 +1779,7 @@ class TwelfthPage extends StatefulWidget {
 }
 
 class _TwelfthPageState extends State<TwelfthPage> {
-  int numero = -1; 
+  int numero = -1;
   int numero2 = -1;
   int numero3 = -1;
 
@@ -1569,7 +1796,7 @@ class _TwelfthPageState extends State<TwelfthPage> {
     int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
-    
+
     // Atualize o estado do widget com o número obtido
     setState(() {
       numero = random;
@@ -1577,6 +1804,7 @@ class _TwelfthPageState extends State<TwelfthPage> {
       numero3 = random3;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1594,21 +1822,378 @@ class _TwelfthPageState extends State<TwelfthPage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.all(8.0), // Espaçamento ao redor do contêiner
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8, // Largura definida como 80% da largura da tela
-                height: MediaQuery.of(context).size.width * 0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
                 decoration: BoxDecoration(
                   color: Colors.grey[350], // Cor de fundo cinza
                   borderRadius: BorderRadius.circular(20.0), // Borda circular
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 16, right: 10, left: 110, top: 10),
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class ThirteenthPage extends StatefulWidget {
+  @override
+  _ThirteenthPageState createState() => _ThirteenthPageState();
+}
+
+class _ThirteenthPageState extends State<ThirteenthPage> {
+  int numero = -1;
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 312',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class FourtennthPage extends StatefulWidget {
+  @override
+  _FourteenthPageState createState() => _FourteenthPageState();
+}
+
+class _FourteenthPageState extends State<FourtennthPage> {
+  int numero = -1;
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 313',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class FifteenthPage extends StatefulWidget {
+  @override
+  _FifteenthPageState createState() => _FifteenthPageState();
+}
+
+class _FifteenthPageState extends State<FifteenthPage> {
+  int numero = -1;
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 314',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 70, // Altura da moldura inferior
+        color: Color(0xFF166674), // Cor da moldura inferior
+      ),
+    );
+  }
+}
+
+class SixtennthPage extends StatefulWidget {
+  @override
+  _SixteenthPageState createState() => _SixteenthPageState();
+}
+
+class _SixteenthPageState extends State<SixtennthPage> {
+  int numero = -1;
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Lab 315',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFF166674),
+      ),
+      body: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(
+                  8.0), // Espaçamento ao redor do contêiner
+              child: Container(
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Largura definida como 80% da largura da tela
+                height: MediaQuery.of(context).size.width *
+                    0.6, // Altura definida como 80% da largura da tela para parecer mais quadrado
+                decoration: BoxDecoration(
+                  color: Colors.grey[350], // Cor de fundo cinza
+                  borderRadius: BorderRadius.circular(20.0), // Borda circular
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: 16, right: 10, left: 110, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment
+                        .center, // Alinhar o conteúdo verticalmente ao centro
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildText('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
@@ -1658,16 +2243,17 @@ Future<int> fetchRandomNumber() async {
     return randomNumbers[0]; // Retorna o primeiro número aleatório gerado
   } else {
     // Se a requisição falhar, mostrar o código de erro
-    print('Falha ao carregar número aleatório. Código de erro: ${response.statusCode}');
+    print(
+        'Falha ao carregar número aleatório. Código de erro: ${response.statusCode}');
     return 0;
   }
 }
 
 Widget _buildText(String label, int value) {
-    String displayText = value != -1 ? value.toString() : 'Carregando...';
-    return Text(
-      '$label$displayText',
-      textAlign: TextAlign.center,
-      //style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-    );
-  }
+  String displayText = value != -1 ? value.toString() : 'Carregando...';
+  return Text(
+    '$label$displayText',
+    textAlign: TextAlign.center,
+    //style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+  );
+}
