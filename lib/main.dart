@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -642,8 +644,37 @@ class MainScreen extends StatelessWidget {
   
 }
 
-class FirstPage extends StatelessWidget {
+class FirstPage extends StatefulWidget  {
   @override
+  _FirstPageState createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -675,10 +706,10 @@ class FirstPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
-                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
+                      if(numero>0)Text('Luz acesa: Sim', textAlign: TextAlign.center)else Text('Luz acesa: Não', textAlign: TextAlign.center)
                     ],
                   ),
                 ),
@@ -695,8 +726,37 @@ class FirstPage extends StatelessWidget {
   }
 }
 
-class SecondPage extends StatelessWidget {
+class SecondPage extends StatefulWidget {
+   @override
+  _SecondPageState createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
   @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -728,9 +788,9 @@ class SecondPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -748,8 +808,37 @@ class SecondPage extends StatelessWidget {
   }
 }
 
-class ThirdPage extends StatelessWidget {
+class ThirdPage extends StatefulWidget {
+   @override
+  _ThirdPageState createState() => _ThirdPageState();
+}
+
+class _ThirdPageState extends State<ThirdPage> {
+ int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
   @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -781,9 +870,9 @@ class ThirdPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -801,8 +890,37 @@ class ThirdPage extends StatelessWidget {
   }
 }
 
-class FourthPage extends StatelessWidget {
+class FourthPage extends StatefulWidget {
+   @override
+  _FourthPageState createState() => _FourthPageState();
+}
+
+class _FourthPageState extends State<FourthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
   @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -834,9 +952,9 @@ class FourthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -854,8 +972,37 @@ class FourthPage extends StatelessWidget {
   }
 }
 
-class FifthPage extends StatelessWidget {
+class FifthPage extends StatefulWidget {
+   @override
+  _FifthPageState createState() => _FifthPageState();
+}
+
+class _FifthPageState extends State<FifthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
   @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -887,9 +1034,9 @@ class FifthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -907,8 +1054,37 @@ class FifthPage extends StatelessWidget {
   }
 }
 
-class SixthPage extends StatelessWidget {
+class SixthPage extends StatefulWidget {
   @override
+  _SixthPageState createState() => _SixthPageState();
+}
+
+class _SixthPageState extends State<SixthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -940,9 +1116,9 @@ class SixthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -960,8 +1136,37 @@ class SixthPage extends StatelessWidget {
   }
 }
 
-class SeventhPage extends StatelessWidget {
+class SeventhPage extends StatefulWidget {
   @override
+  _SeventhPageState createState() => _SeventhPageState();
+}
+
+class _SeventhPageState extends State<SeventhPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -993,9 +1198,9 @@ class SeventhPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -1013,8 +1218,37 @@ class SeventhPage extends StatelessWidget {
   }
 }
 
-class EighthPage extends StatelessWidget {
+class EighthPage extends StatefulWidget {
   @override
+  _EighthPageState createState() => _EighthPageState();
+}
+
+class _EighthPageState extends State<EighthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1046,9 +1280,9 @@ class EighthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -1066,8 +1300,37 @@ class EighthPage extends StatelessWidget {
   }
 }
 
-class NinthPage extends StatelessWidget {
+class NinthPage extends StatefulWidget {
   @override
+  _NinthPageState createState() => _NinthPageState();
+}
+
+class _NinthPageState extends State<NinthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1099,9 +1362,9 @@ class NinthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -1119,8 +1382,37 @@ class NinthPage extends StatelessWidget {
   }
 }
 
-class TenthPage extends StatelessWidget {
+class TenthPage extends StatefulWidget {
   @override
+  _TenthPageState createState() => _TenthPageState();
+}
+
+class _TenthPageState extends State<TenthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1152,9 +1444,9 @@ class TenthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -1172,8 +1464,37 @@ class TenthPage extends StatelessWidget {
   }
 }
 
-class EleventhPage extends StatelessWidget {
+class EleventhPage extends StatefulWidget {
   @override
+  _EleventhPageState createState() => _EleventhPageState();
+}
+
+class _EleventhPageState extends State<EleventhPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1205,9 +1526,9 @@ class EleventhPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 7', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 26', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 12', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
                       Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
@@ -1225,8 +1546,37 @@ class EleventhPage extends StatelessWidget {
   }
 }
 
-class TwelfthPage extends StatelessWidget {
+class TwelfthPage extends StatefulWidget {
   @override
+  _TwelfthPageState createState() => _TwelfthPageState();
+}
+
+class _TwelfthPageState extends State<TwelfthPage> {
+  int numero = -1; 
+  int numero2 = -1;
+  int numero3 = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
+    _fetchRandomNumber();
+  }
+
+  // Função assíncrona para buscar o número aleatório
+  Future<void> _fetchRandomNumber() async {
+    // Chame a função que retorna um Future<int>
+    int random = await fetchRandomNumber();
+    int random2 = await fetchRandomNumber();
+    int random3 = await fetchRandomNumber();
+    
+    // Atualize o estado do widget com o número obtido
+    setState(() {
+      numero = random;
+      numero2 = random2;
+      numero3 = random3;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -1258,10 +1608,10 @@ class TwelfthPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pessoas no local: 9', textAlign: TextAlign.center), // Alinhar o texto no centro
-                      Text('Pessoas no mês: 16', textAlign: TextAlign.center),
-                      Text('Pessoas na semana: 11', textAlign: TextAlign.center),
-                      Text('Luz acesa: Não', textAlign: TextAlign.center),
+                       _buildText('Pessoas no local: ', numero),
+                      _buildText('Pessoas no mês: ', numero2),
+                      _buildText('Pessoas na semana: ', numero3),
+                      Text('Luz acesa: Sim', textAlign: TextAlign.center),
                     ],
                   ),
                 ),
@@ -1277,3 +1627,47 @@ class TwelfthPage extends StatelessWidget {
     );
   }
 }
+
+Future<int> fetchRandomNumber() async {
+  final apiKey = '6450f899-001a-4f76-b1b2-6131b199c699';
+  final min = 0;
+  final max = 25; // Defina o intervalo desejado para o número aleatório
+
+  final uri = Uri.parse('https://api.random.org/json-rpc/2/invoke');
+  final headers = {'Content-Type': 'application/json'};
+
+  final body = jsonEncode({
+    'jsonrpc': '2.0',
+    'method': 'generateIntegers',
+    'params': {
+      'apiKey': apiKey,
+      'n': 1, // Quantidade de números aleatórios desejados
+      'min': min,
+      'max': max,
+      'replacement': true, // Permitir números repetidos
+    },
+    'id': 1,
+  });
+
+  final response = await http.post(uri, headers: headers, body: body);
+
+  if (response.statusCode == 200) {
+    // Requisição bem-sucedida
+    final jsonData = jsonDecode(response.body);
+    final randomNumbers = jsonData['result']['random']['data'];
+    return randomNumbers[0]; // Retorna o primeiro número aleatório gerado
+  } else {
+    // Se a requisição falhar, mostrar o código de erro
+    print('Falha ao carregar número aleatório. Código de erro: ${response.statusCode}');
+    return 0;
+  }
+}
+
+Widget _buildText(String label, int value) {
+    String displayText = value != -1 ? value.toString() : 'Carregando...';
+    return Text(
+      '$label$displayText',
+      textAlign: TextAlign.center,
+      //style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    );
+  }
