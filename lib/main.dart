@@ -659,22 +659,38 @@ class _FirstPageState extends State<FirstPage> {
     super.initState();
     // Ao iniciar a tela, chame a função assíncrona para buscar o número aleatório
     _fetchRandomNumber();
+    _fetchDataFromAPI();
   }
 
   // Função assíncrona para buscar o número aleatório
   Future<void> _fetchRandomNumber() async {
     // Chame a função que retorna um Future<int>
-    int random = await fetchRandomNumber();
+    //int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
     
     // Atualize o estado do widget com o número obtido
     setState(() {
-      numero = random;
+      //numero = random;
       numero2 = random2;
       numero3 = random3;
     });
   }
+  Future<void> _fetchDataFromAPI() async {
+    try {
+      final data = await fetchDataFromAPI();
+      //throw Exception(data);
+      setState(() {
+        numero = data[0];
+      });
+    } catch (e) {
+      setState(() {
+        // Se houver erro, defina os valores para -1 ou uma mensagem de erro
+        numero = -5;
+      });
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -706,7 +722,7 @@ class _FirstPageState extends State<FirstPage> {
                     mainAxisAlignment: MainAxisAlignment.center, // Alinhar o conteúdo verticalmente ao centro
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       _buildText('Pessoas no local: ', numero),
+                      _buildText2('Pessoas no local: ', numero),
                       _buildText('Pessoas no mês: ', numero2),
                       _buildText('Pessoas na semana: ', numero3),
                       if(numero>0)Text('Luz acesa: Sim', textAlign: TextAlign.center)else Text('Luz acesa: Não', textAlign: TextAlign.center)
@@ -1671,3 +1687,38 @@ Widget _buildText(String label, int value) {
       //style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
+
+  Widget _buildText2(String label, int value) {
+    String displayText = value.toString();
+    return Text(
+      '$label$displayText',
+      textAlign: TextAlign.center,
+      //style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    );
+  }
+
+/*
+
+Future<Map<String, dynamic>> fetchDataFromAPI() async {
+  final response = await http.get(Uri.parse('http://localhost:3000/data'));
+
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+*/
+
+Future<Map<String, dynamic>> fetchDataFromAPI() async {
+  final response = await http.get(Uri.parse('http://10.0.2.2:3000/data'));
+
+  if (response.statusCode == 200) {
+    //throw Exception(response.body);
+    return jsonDecode(response.body);
+    
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+
