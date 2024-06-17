@@ -1701,7 +1701,7 @@ Widget _buildText(String label, int value) {
 
 Future<Map<String, dynamic>> fetchDataFromAPI() async {
   final response = await http.get(Uri.parse('http://localhost:3000/data'));
-Uri.parse('http://10.0.2.2:3000/data')
+
   if (response.statusCode == 200) {
     return jsonDecode(response.body);
   } else {
@@ -1711,7 +1711,8 @@ Uri.parse('http://10.0.2.2:3000/data')
 */
 
 Future<Map<String, dynamic>> fetchDataFromAPI() async {
-  final response = await http.get(Uri.parse('https://api.random.org/json-rpc/2/invoke'));
+  final response = await http.get(Uri.parse('http://10.0.2.2:3000/data'));
+  
 
   if (response.statusCode == 200) {
     //throw Exception(response.body);
