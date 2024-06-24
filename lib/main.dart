@@ -664,14 +664,11 @@ class _FirstPageState extends State<FirstPage> {
 
   // Função assíncrona para buscar o número aleatório
   Future<void> _fetchRandomNumber() async {
-    // Chame a função que retorna um Future<int>
-    //int random = await fetchRandomNumber();
     int random2 = await fetchRandomNumber();
     int random3 = await fetchRandomNumber();
     
     // Atualize o estado do widget com o número obtido
     setState(() {
-      //numero = random;
       numero2 = random2;
       numero3 = random3;
     });
@@ -679,15 +676,11 @@ class _FirstPageState extends State<FirstPage> {
   Future<void> _fetchDataFromAPI() async {
     try {
       final data = await fetchDataFromAPI();
-      //throw Exception(data);
       setState(() {
-        numero = data[0];
+        numero = data['QTD_PES'];
       });
     } catch (e) {
-      setState(() {
-        // Se houver erro, defina os valores para -1 ou uma mensagem de erro
-        numero = -5;
-      });
+      print(e); // Handle the error appropriately in your app
     }
   }
 
@@ -1711,13 +1704,10 @@ Future<Map<String, dynamic>> fetchDataFromAPI() async {
 */
 
 Future<Map<String, dynamic>> fetchDataFromAPI() async {
-  final response = await http.get(Uri.parse('http://10.0.2.2:3000/data'));
-  
+  final response = await http.get(Uri.parse('http://10.0.2.2:1433/data'));
 
   if (response.statusCode == 200) {
-    //throw Exception(response.body);
-    return jsonDecode(response.body);
-    
+    return jsonDecode(response.body)[0];
   } else {
     throw Exception('Failed to load data');
   }
